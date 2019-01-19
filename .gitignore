@@ -1,0 +1,36 @@
+# Файлы и папки операционной системы
+.DS_Store
+Thumbs.db
+
+# Файлы редактора
+.idea
+*.sublime*
+.vscode
+
+# Вспомогательные файлы
+*.log*
+node_modules/
+
+# Папка с собранными файлами проекта
+build/
+
+# Прочее
+*.ai
+*.pdf
+*.psd
+app/css/*.css
+npm-debug.*
+other/
+logs/*
+vendor/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/debugbar
+/nbproject
+/.vagrant
+Homestead.json
+Homestead.yaml
+yarn-error.log
+.env
+.phpunit.result.cache
