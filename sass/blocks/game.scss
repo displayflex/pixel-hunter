@@ -122,6 +122,10 @@
 
   &:hover {
     border-color: $link-hover-color;
+	}
+
+	&:focus {
+    border-color: $link-hover-color;
   }
 
   &:active {
