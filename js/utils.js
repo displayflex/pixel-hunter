@@ -6,10 +6,15 @@ const getElementFromTemplate = (markup) => {
 
 	return element;
 };
+// TODO: переделать под DocumentFragment?
 
 const changeScreen = (element) => {
 	mainElement.innerHTML = ``;
 	mainElement.appendChild(element);
+
+	// elements.forEach((it) => {
+	// 	mainElement.appendChild(it); // TODO: переделать что бы не перерисовывался header
+	// });
 };
 
 export {getElementFromTemplate, changeScreen};

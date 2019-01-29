@@ -1,17 +1,23 @@
 import {getElementFromTemplate, changeScreen} from '../utils';
-import greetingElement from './greeting';
+import getGreetingScreen from './greeting';
 
-const introElement = getElementFromTemplate(`
-	<section class="intro">
-		<button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
-		<p class="intro__motto">
-			<sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.
-		</p>
-	</section>
-`);
+const getIntroScreen = () => {
+	const introTemplate = `
+		<section class="intro">
+			<button class="intro__asterisk asterisk" type="button"><span class="visually-hidden">Продолжить</span>*</button>
+			<p class="intro__motto">
+				<sup>*</sup> Это не фото. Это рисунок маслом нидерландского художника-фотореалиста Tjalf Sparnaay.
+			</p>
+		</section>
+	`;
 
-const nextButton = introElement.querySelector(`.intro__asterisk`);
+	const introElement = getElementFromTemplate(introTemplate);
 
-nextButton.addEventListener(`click`, () => changeScreen(greetingElement));
+	const nextButton = introElement.querySelector(`.intro__asterisk`);
 
-export default introElement;
+	nextButton.addEventListener(`click`, () => changeScreen(getGreetingScreen()));
+
+	return introElement;
+};
+
+export default getIntroScreen;

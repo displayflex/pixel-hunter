@@ -1,4 +1,8 @@
 import {changeScreen} from './utils';
-import introElement from './pages/intro';
+import getIntroScreen from './pages/intro';
 
-changeScreen(introElement);
+changeScreen(getIntroScreen());
+
+// TODO: написать функции используя BDD:
+// • Переключение уровней
+// • Отсчёт времени
