@@ -1,20 +1,15 @@
 const mainElement = document.querySelector(`#main`);
 
 const getElementFromTemplate = (markup) => {
-	const element = document.createElement(`div`);
-	element.innerHTML = markup.trim();
+	const wrapper = document.createElement(`div`); // TODO: переделать под DocumentFragment?
+	wrapper.innerHTML = markup.trim();
 
-	return element;
+	return wrapper;
 };
-// TODO: переделать под DocumentFragment?
 
-const changeScreen = (element) => {
+const changeView = (view) => {
 	mainElement.innerHTML = ``;
-	mainElement.appendChild(element);
-
-	// elements.forEach((it) => {
-	// 	mainElement.appendChild(it); // TODO: переделать что бы не перерисовывался header
-	// });
+	mainElement.appendChild(view.element);
 };
 
-export {getElementFromTemplate, changeScreen};
+export {getElementFromTemplate, changeView};
