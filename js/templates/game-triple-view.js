@@ -1,4 +1,5 @@
 import AbstractView from './abstract-view';
+import {KeyCode} from '../data/config';
 
 class GameTripleView extends AbstractView {
 	constructor(state, levelData, header, stats) {
@@ -47,11 +48,6 @@ class GameTripleView extends AbstractView {
 
 			it.addEventListener(`keydown`, (evt) => {
 				evt.preventDefault();
-
-				const KeyCode = { // тут???
-					SPACE: 32,
-					ENTER: 13
-				};
 
 				if (evt.keyCode === KeyCode.SPACE || evt.keyCode === KeyCode.ENTER) {
 					this.onAnswer([evt.target.children[0].alt]);

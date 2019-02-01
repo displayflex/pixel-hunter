@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import {ExtraPoint} from '../game/calculate-score';
+import {ExtraPoint} from '../data/config';
 
 class ResultsView extends AbstractView {
 	constructor(state, score, header, stats) {

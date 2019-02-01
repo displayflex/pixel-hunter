@@ -1,21 +1,4 @@
-// const QuestionTime = { // TODO: перенести
-// 	FAST: 10,
-// 	SLOW: 20
-// };
-const ExtraPoint = {
-	BASE: 100,
-	FAST: 50,
-	SLOW: 50,
-	LIFE: 50
-};
-const AnswerType = {
-	CORRECT: `correct`,
-	FAST: `fast`,
-	SLOW: `slow`,
-	WRONG: `wrong`
-};
-const ANSWERS_AMOUNT = 10;
-const MAX_LIVES_AMOUNT = 3;
+import {ExtraPoint, AnswerType, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from '../data/config';
 
 const calculateScore = (answers, livesLeftAmount) => {
 	if (!Array.isArray(answers)) {
@@ -26,7 +9,7 @@ const calculateScore = (answers, livesLeftAmount) => {
 		throw new Error(`Second parameter should be a number`);
 	}
 
-	if (answers.length < ANSWERS_AMOUNT || answers.length > ANSWERS_AMOUNT) {
+	if (answers.length < ALL_ANSWERS_AMOUNT || answers.length > ALL_ANSWERS_AMOUNT) {
 		return -1;
 	}
 
@@ -48,4 +31,4 @@ const calculateScore = (answers, livesLeftAmount) => {
 	};
 };
 
-export {calculateScore, ANSWERS_AMOUNT, MAX_LIVES_AMOUNT, AnswerType, ExtraPoint};
+export {calculateScore, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT, AnswerType, ExtraPoint};

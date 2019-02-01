@@ -1,4 +1,5 @@
 import AbstractView from './abstract-view';
+import {ALL_ANSWERS_AMOUNT} from '../data/config';
 
 class StatsView extends AbstractView {
 	constructor(answers) {
@@ -10,11 +11,10 @@ class StatsView extends AbstractView {
 		return `
 			<ul class="stats">
 				${this.answers.map((it) => `<li class="stats__result stats__result--${it.status}"></li>`).join(``)}
-				${new Array(10 - this.answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`).join(``)}
+				${new Array(ALL_ANSWERS_AMOUNT - this.answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`).join(``)}
 			</ul>
 		`;
 	}
 }
-// FIXME: 10 - to const?
 
 export default StatsView;

@@ -1,4 +1,5 @@
 import AbstractView from './abstract-view';
+import {MAX_LIVES_AMOUNT} from '../data/config';
 
 class HeaderView extends AbstractView {
 	constructor(state = ``) {
@@ -34,11 +35,9 @@ class HeaderView extends AbstractView {
 	}
 
 	addLivesTemplate(lives) {
-		const MAX_LIVES = 3;
-
 		return `
 			<div class="game__lives">
-				${new Array(MAX_LIVES - lives).fill(`
+				${new Array(MAX_LIVES_AMOUNT - lives).fill(`
 					<img src="img/heart__empty.svg" class="game__heart" alt=" Missed Life" width="31" height="27">
 				`).join(``)}
 				${new Array(lives).fill(`

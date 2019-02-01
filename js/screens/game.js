@@ -5,7 +5,7 @@ import showGreeting from './greeting';
 import GameSingleView from '../templates/game-single-view';
 import GameDoubleView from '../templates/game-double-view';
 import GameTripleView from '../templates/game-triple-view';
-import {AnswerType} from '../game/calculate-score';
+import {AnswerType} from '../data/config';
 import StatsView from '../templates/stats-view';
 import showResults from './results';
 import changeLives from '../game/change-lives';
