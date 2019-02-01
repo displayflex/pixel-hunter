@@ -2,10 +2,10 @@ import AbstractView from './abstract-view';
 import {KeyCode} from '../data/config';
 
 class GameTripleView extends AbstractView {
-	constructor(state, levelData, header, stats) {
+	constructor(state, images, header, stats) {
 		super();
 		this.state = state;
-		this.level = levelData;
+		this.images = images;
 		this.header = header.element;
 		this.statsTemplate = stats.template;
 	}
@@ -16,13 +16,13 @@ class GameTripleView extends AbstractView {
 				<p class="game__task">Найдите рисунок среди изображений</p>
 				<form class="game__content game__content--triple">
 					<div class="game__option" tabindex="0">
-						<img src="${this.level.images[0]}" alt="Option 1" width="304" height="455">
+						<img src="${this.images[0].src}" alt="Option 1" width="${this.images[0].width}" height="${this.images[0].height}">
 					</div>
 					<div class="game__option game__option--selected" tabindex="0">
-						<img src="${this.level.images[1]}" alt="Option 2" width="304" height="455">
+						<img src="${this.images[1].src}" alt="Option 2" width="${this.images[1].width}" height="${this.images[1].height}">
 					</div>
 					<div class="game__option" tabindex="0">
-						<img src="${this.level.images[2]}" alt="Option 3" width="304" height="455">
+						<img src="${this.images[2].src}" alt="Option 3" width="${this.images[2].width}" height="${this.images[2].height}">
 					</div>
 				</form>
 				${this.statsTemplate}

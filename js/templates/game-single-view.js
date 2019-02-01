@@ -1,10 +1,10 @@
 import AbstractView from './abstract-view';
 
 class GameSingleView extends AbstractView {
-	constructor(state, levelData, header, stats) {
+	constructor(state, images, header, stats) {
 		super();
 		this.state = state;
-		this.level = levelData;
+		this.images = images;
 		this.header = header.element;
 		this.statsTemplate = stats.template;
 	}
@@ -15,7 +15,7 @@ class GameSingleView extends AbstractView {
 				<p class="game__task">Угадай, фото или рисунок?</p>
 				<form class="game__content game__content--wide">
 					<div class="game__option">
-						<img src="${this.level.images[0]}" alt="Option 1" width="705" height="455">
+						<img src="${this.images[0].src}" alt="Option 1" width="${this.images[0].width}" height="${this.images[0].height}">
 						<label class="game__answer game__answer--photo">
 							<input class="visually-hidden" name="question1" type="radio" value="photo">
 							<span>Фото</span>

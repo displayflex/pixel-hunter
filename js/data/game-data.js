@@ -1,23 +1,47 @@
 const pictures = {
 	paintings: [
 		// People
-		`https://k42.kn3.net/CF42609C8.jpg`,
+		{
+			src: `https://k42.kn3.net/CF42609C8.jpg`,
+			width: 600,
+			height: 831
+		},
 
 		// Animals
-		`https://k42.kn3.net/D2F0370D6.jpg`,
+		{
+			src: `https://k42.kn3.net/D2F0370D6.jpg`,
+			width: 468,
+			height: 354
+		},
 
 		// Nature
-		`https://k32.kn3.net/5C7060EC5.jpg`,
+		{
+			src: `https://k32.kn3.net/5C7060EC5.jpg`,
+			width: 1184,
+			height: 888
+		},
 	],
 	photos: [
 		// People
-		`http://i.imgur.com/1KegWPz.jpg`,
+		{
+			src: `http://i.imgur.com/1KegWPz.jpg`,
+			width: 1080,
+			height: 720
+		},
 
 		// Animals
-		`https://i.imgur.com/DiHM5Zb.jpg`,
+		{
+			src: `https://i.imgur.com/DiHM5Zb.jpg`,
+			width: 636,
+			height: 938
+		},
 
 		// Nature
-		`http://i.imgur.com/DKR1HtB.jpg`
+		{
+			src: `http://i.imgur.com/DKR1HtB.jpg`,
+			width: 354,
+			height: 937
+		},
 	]
 };
 

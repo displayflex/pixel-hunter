@@ -5,21 +5,17 @@ import showGreeting from './greeting';
 import GameSingleView from '../templates/game-single-view';
 import GameDoubleView from '../templates/game-double-view';
 import GameTripleView from '../templates/game-triple-view';
-import {AnswerType} from '../data/config';
+import {AnswerType, ImagesToChoose} from '../data/config';
 import StatsView from '../templates/stats-view';
 import showResults from './results';
 import changeLives from '../game/change-lives';
 import increaseLevel from '../game/increase-level';
+import {getResizedImages} from '../game/resize';
 
 const changeLevel = (state) => {
-	const ImagesToChoose = {
-		ONE: 1,
-		TWO: 2,
-		THREE: 3
-	};
-
 	const MAX_GAME_LEVEL = levels.length - 1;
 	const levelData = levels[state.level];
+	const images = getResizedImages(levelData.images);
 
 	const header = new HeaderView(state);
 	const stats = new StatsView(state.answers);
@@ -27,15 +23,15 @@ const changeLevel = (state) => {
 
 	switch (levelData.images.length) {
 		case ImagesToChoose.ONE:
-			level = new GameSingleView(state, levelData, header, stats);
+			level = new GameSingleView(state, images, header, stats);
 			break;
 
 		case ImagesToChoose.TWO:
-			level = new GameDoubleView(state, levelData, header, stats);
+			level = new GameDoubleView(state, images, header, stats);
 			break;
 
 		case ImagesToChoose.THREE:
-			level = new GameTripleView(state, levelData, header, stats);
+			level = new GameTripleView(state, images, header, stats);
 			break;
 
 		default:
