@@ -38,15 +38,15 @@ class GameScreen {
 
 		switch (images.length) {
 			case ImagesToChoose.ONE:
-				level = new GameSingleView(getResizedImages(images), this.stats);
+				level = new GameSingleView(getResizedImages(images), this.stats, this.model.state.level);
 				break;
 
 			case ImagesToChoose.TWO:
-				level = new GameDoubleView(getResizedImages(images), this.stats);
+				level = new GameDoubleView(getResizedImages(images), this.stats, this.model.state.level);
 				break;
 
 			case ImagesToChoose.THREE:
-				level = new GameTripleView(getResizedImages(images), this.stats);
+				level = new GameTripleView(getResizedImages(images), this.stats, this.model.state.level);
 				break;
 
 			default:

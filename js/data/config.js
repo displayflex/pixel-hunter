@@ -1,3 +1,8 @@
+const hash = window.location.hash.replace(`#`, ``);
+
+const DEBUG = hash.toLowerCase() === `debug`;
+const DEBUG_STYLE = `style="border: 5px solid green"`;
+
 const KeyCode = {
 	SPACE: 32,
 	ENTER: 13
@@ -56,5 +61,7 @@ export {
 	MAX_LIVES_AMOUNT,
 	ImagesToChoose,
 	ImageFrame,
-	ONE_SECOND
+	ONE_SECOND,
+	DEBUG,
+	DEBUG_STYLE
 };
