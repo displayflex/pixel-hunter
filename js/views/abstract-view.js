@@ -1,5 +1,3 @@
-import {getElementFromTemplate} from '../utils';
-
 class AbstractView {
 	constructor() {
 		if (new.target === AbstractView) {
@@ -21,7 +19,10 @@ class AbstractView {
 	}
 
 	render() {
-		return getElementFromTemplate(this.template); // перенести методы из utils сюда??
+		const wrapper = document.createElement(`div`); // TODO: переделать под DocumentFragment?
+		wrapper.innerHTML = this.template.trim();
+
+		return wrapper.childNodes[0];
 	}
 
 	bind() {

@@ -25,8 +25,8 @@ const ImageFrame = {
 };
 
 const QuestionTime = {
-	FAST: 10,
-	SLOW: 20
+	SLOW: 10,
+	FAST: 20
 };
 
 const ExtraPoint = {
@@ -45,6 +45,7 @@ const AnswerType = {
 
 const ALL_ANSWERS_AMOUNT = 10;
 const MAX_LIVES_AMOUNT = 3;
+const ONE_SECOND = 1000;
 
 export {
 	KeyCode,
@@ -54,5 +55,6 @@ export {
 	ALL_ANSWERS_AMOUNT,
 	MAX_LIVES_AMOUNT,
 	ImagesToChoose,
-	ImageFrame
+	ImageFrame,
+	ONE_SECOND
 };

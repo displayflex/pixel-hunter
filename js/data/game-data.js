@@ -45,14 +45,14 @@ const pictures = {
 	]
 };
 
-const initialState = Object.freeze({
+const INITIAL_STATE = Object.freeze({
 	time: 30,
 	lives: 3,
 	level: 0,
 	answers: []
 });
 
-const levels = [
+const LEVELS = [
 	{
 		images: [pictures.paintings[0], pictures.photos[0], pictures.photos[2]],
 		answers: [`Option 1`]
@@ -95,4 +95,4 @@ const levels = [
 	}
 ];
 
-export {initialState, levels};
+export {INITIAL_STATE, LEVELS};

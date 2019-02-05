@@ -2,11 +2,9 @@ import AbstractView from './abstract-view';
 import {KeyCode} from '../data/config';
 
 class GameTripleView extends AbstractView {
-	constructor(state, images, header, stats) {
+	constructor(images, stats) {
 		super();
-		this.state = state;
 		this.images = images;
-		this.header = header.element;
 		this.statsTemplate = stats.template;
 	}
 
@@ -28,13 +26,6 @@ class GameTripleView extends AbstractView {
 				${this.statsTemplate}
 			</section>
 		`;
-	}
-
-	render() {
-		const element = super.render();
-		element.insertAdjacentElement(`afterbegin`, this.header.childNodes[0]);
-
-		return element;
 	}
 
 	bind() {

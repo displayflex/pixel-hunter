@@ -1,11 +1,6 @@
 import AbstractView from './abstract-view';
 
 class RulesView extends AbstractView {
-	constructor(header) {
-		super();
-		this.header = header.element;
-	}
-
 	get template() {
 		return `
 			<section class="rules">
@@ -27,13 +22,6 @@ class RulesView extends AbstractView {
 		`;
 	}
 
-	render() {
-		const element = super.render();
-		element.insertAdjacentElement(`afterbegin`, this.header.childNodes[0]);
-
-		return element;
-	}
-
 	isButtonDisabled(input) {
 		return !input.value;
 	}
@@ -52,7 +40,7 @@ class RulesView extends AbstractView {
 
 		form.addEventListener(`submit`, (evt) => {
 			evt.preventDefault();
-			this.onSubmit();
+			this.onSubmit(nameInput.value);
 		});
 	}
 

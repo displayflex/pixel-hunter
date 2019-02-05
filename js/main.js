@@ -1,4 +1,3 @@
-import {changeView} from './utils';
-import showIntro from './screens/intro';
+import Application from './application';
 
-changeView(showIntro());
+Application.showIntro();

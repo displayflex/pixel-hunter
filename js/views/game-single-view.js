@@ -1,11 +1,9 @@
 import AbstractView from './abstract-view';
 
 class GameSingleView extends AbstractView {
-	constructor(state, images, header, stats) {
+	constructor(images, stats) {
 		super();
-		this.state = state;
 		this.images = images;
-		this.header = header.element;
 		this.statsTemplate = stats.template;
 	}
 
@@ -29,13 +27,6 @@ class GameSingleView extends AbstractView {
 				${this.statsTemplate}
 			</section>
 		`;
-	}
-
-	render() {
-		const element = super.render();
-		element.insertAdjacentElement(`afterbegin`, this.header.childNodes[0]);
-
-		return element;
 	}
 
 	bind() {
