@@ -1,11 +1,10 @@
 import HeaderView from "../views/header-view";
 import Application from "../application";
-import {AnswerType, ImagesToChoose, ONE_SECOND, QuestionTime} from '../data/config';
+import {AnswerType, ONE_SECOND, QuestionTime, QuestionType} from '../data/config';
 import GameSingleView from "../views/game-single-view";
 import GameDoubleView from "../views/game-double-view";
 import GameTripleView from "../views/game-triple-view";
 import StatsView from "../views/stats-view";
-import {getResizedImages} from '../game/resize';
 
 class GameScreen {
 	constructor(model) {
@@ -13,7 +12,10 @@ class GameScreen {
 
 		this.header = new HeaderView(this.model.state);
 		this.stats = new StatsView(this.model.state.answers);
-		this.content = this.chooseGameType(this.model.getCurrentLevel().images);
+
+		this.level = this.model.getCurrentLevel();
+		this.content = this.chooseGameType(this.level.type);
+		this.level.onAnswer = this.answer.bind(this);
 
 		this.root = document.createElement(`div`);
 		this.root.appendChild(this.header.element);
@@ -33,20 +35,20 @@ class GameScreen {
 		this.timerValue = this.header.element.querySelector(`.game__timer`).textContent; // FIXME: ?
 	}
 
-	chooseGameType(images) {
+	chooseGameType(type) {
 		let level;
 
-		switch (images.length) {
-			case ImagesToChoose.ONE:
-				level = new GameSingleView(getResizedImages(images), this.stats, this.model.state.level);
+		switch (type) {
+			case QuestionType.TINDER_LIKE:
+				level = new GameSingleView(this.level, this.stats);
 				break;
 
-			case ImagesToChoose.TWO:
-				level = new GameDoubleView(getResizedImages(images), this.stats, this.model.state.level);
+			case QuestionType.TWO_OF_TWO:
+				level = new GameDoubleView(this.level, this.stats);
 				break;
 
-			case ImagesToChoose.THREE:
-				level = new GameTripleView(getResizedImages(images), this.stats, this.model.state.level);
+			case QuestionType.ONE_OF_THREE:
+				level = new GameTripleView(this.level, this.stats);
 				break;
 
 			default:
@@ -79,8 +81,18 @@ class GameScreen {
 		clearInterval(this._timer);
 	}
 
-	isRightAnswer(userAnswer, levelAnswer) {
-		return JSON.stringify(userAnswer) === JSON.stringify(levelAnswer);
+	getArrayOfAnswers(level) {
+		return level.answers.map((it) => it.type);
+	}
+
+	isRightAnswer(answer) {
+		const levelAnswers = this.getArrayOfAnswers(this.level);
+
+		if (this.level.type === QuestionType.ONE_OF_THREE) {
+			return levelAnswers.indexOf(levelAnswers[answer]) === levelAnswers.lastIndexOf(levelAnswers[answer]);
+		}
+
+		return JSON.stringify(answer) === JSON.stringify(levelAnswers);
 	}
 
 	getCorrectAnswerStatus(time) {
@@ -96,7 +108,7 @@ class GameScreen {
 	answer(answer) {
 		this.stopGame();
 
-		if (!answer || !this.isRightAnswer(answer, this.model.getCurrentLevel().answers)) {
+		if (!answer || !this.isRightAnswer(answer)) {
 			this.model.decreaseLives();
 			this.model.addAnswer(AnswerType.WRONG, this.timerValue);
 		} else {
@@ -120,7 +132,9 @@ class GameScreen {
 
 	changeLevel() {
 		this.updateHeader();
-		const level = this.chooseGameType(this.model.getCurrentLevel().images);
+
+		this.level = this.model.getCurrentLevel();
+		const level = this.chooseGameType(this.level.type);
 		level.onAnswer = this.answer.bind(this);
 		this.changeContentView(level);
 	}

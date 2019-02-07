@@ -119,7 +119,7 @@ class ResultsView extends AbstractView {
 	}
 
 	addLivePointsTemplate() {
-		if (this.score === -1 || !this.score.lives) {
+		if (this.score === -1 || this.score.lives < 1) {
 			return ``;
 		}
 

@@ -1,29 +1,33 @@
-const hash = window.location.hash.replace(`#`, ``);
-
-const DEBUG = hash.toLowerCase() === `debug`;
-const DEBUG_STYLE = `style="border: 5px solid green"`;
-
 const KeyCode = {
 	SPACE: 32,
 	ENTER: 13
 };
 
-const ImagesToChoose = {
-	ONE: 1,
-	TWO: 2,
-	THREE: 3
+const Status = {
+	OK: 200,
+	REDIRECT: 300
+};
+
+const DataURL = {
+	LOAD: `https://es.dump.academy/pixel-hunter/questions`
+};
+
+const QuestionType = {
+	TWO_OF_TWO: `two-of-two`,
+	TINDER_LIKE: `tinder-like`,
+	ONE_OF_THREE: `one-of-three`
 };
 
 const ImageFrame = {
-	SINGLE: {
+	[QuestionType.TINDER_LIKE]: {
 		width: 705,
 		height: 455
 	},
-	DOUBLE: {
+	[QuestionType.TWO_OF_TWO]: {
 		width: 468,
 		height: 458
 	},
-	TRIPLE: {
+	[QuestionType.ONE_OF_THREE]: {
 		width: 304,
 		height: 455
 	}
@@ -59,9 +63,9 @@ export {
 	AnswerType,
 	ALL_ANSWERS_AMOUNT,
 	MAX_LIVES_AMOUNT,
-	ImagesToChoose,
 	ImageFrame,
 	ONE_SECOND,
-	DEBUG,
-	DEBUG_STYLE
+	QuestionType,
+	Status,
+	DataURL
 };

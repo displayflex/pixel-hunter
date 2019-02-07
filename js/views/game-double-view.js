@@ -1,40 +1,48 @@
 import AbstractView from './abstract-view';
-import {LEVELS} from '../data/game-data';
-import {DEBUG, DEBUG_STYLE} from '../data/config';
+import {DEBUG, DEBUG_STYLE} from '../data/settings';
 
 class GameDoubleView extends AbstractView {
-	constructor(images, stats, levelNumber) {
+	constructor(level, stats) {
 		super();
-		this.images = images;
+		this.level = level;
 		this.statsTemplate = stats.template;
-		this.level = levelNumber;
 	}
 
 	get template() {
 		return `
 			<section class="game">
-				<p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
+				<p class="game__task">${this.level.question}</p>
 				<form class="game__content">
 					<div class="game__option">
-						<img src="${this.images[0].src}" alt="Option 1" width="${this.images[0].width}" height="${this.images[0].height}">
+						<img
+							src="${this.level.answers[0].image.url}"
+							alt="Option 1"
+							width="${this.level.answers[0].image.width}"
+							height="${this.level.answers[0].image.height}"
+						>
 						<label class="game__answer game__answer--photo">
 							<input class="visually-hidden" name="question1" type="radio" value="photo">
-							<span ${DEBUG && LEVELS[this.level].answers[0] === `photo` ? DEBUG_STYLE : ``}>Фото</span>
+							<span ${DEBUG && this.level.answers[0].type === `photo` ? DEBUG_STYLE : ``}>Фото</span>
 						</label>
 						<label class="game__answer game__answer--paint">
 							<input class="visually-hidden" name="question1" type="radio" value="paint">
-							<span ${DEBUG && LEVELS[this.level].answers[0] === `paint` ? DEBUG_STYLE : ``}>Рисунок</span>
+							<span ${DEBUG && this.level.answers[0].type === `paint` ? DEBUG_STYLE : ``}>Рисунок</span>
 						</label>
 					</div>
 					<div class="game__option">
-						<img src="${this.images[1].src}" alt="Option 2" width="${this.images[1].width}" height="${this.images[1].height}">
+						<img
+							src="${this.level.answers[1].image.url}"
+							alt="Option 2"
+							width="${this.level.answers[1].image.width}"
+							height="${this.level.answers[1].image.height}"
+						>
 						<label class="game__answer game__answer--photo">
 							<input class="visually-hidden" name="question2" type="radio" value="photo">
-							<span ${DEBUG && LEVELS[this.level].answers[1] === `photo` ? DEBUG_STYLE : ``}>Фото</span>
+							<span ${DEBUG && this.level.answers[1].type === `photo` ? DEBUG_STYLE : ``}>Фото</span>
 						</label>
 						<label class="game__answer game__answer--paint">
 							<input class="visually-hidden" name="question2" type="radio" value="paint">
-							<span ${DEBUG && LEVELS[this.level].answers[1] === `paint` ? DEBUG_STYLE : ``}>Рисунок</span>
+							<span ${DEBUG && this.level.answers[1].type === `paint` ? DEBUG_STYLE : ``}>Рисунок</span>
 						</label>
 					</div>
 				</form>

@@ -1,4 +1,4 @@
-const pictures = {
+const pictures = { // TODO: remove this
 	paintings: [
 		// People
 		{
@@ -52,7 +52,7 @@ const INITIAL_STATE = Object.freeze({
 	answers: []
 });
 
-const LEVELS = [
+const LEVELS = [ // TODO: remove this
 	{
 		images: [pictures.paintings[0], pictures.photos[0], pictures.photos[2]],
 		answers: [`Option 1`]

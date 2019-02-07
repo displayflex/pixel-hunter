@@ -1,29 +1,42 @@
 import AbstractView from './abstract-view';
 import {KeyCode} from '../data/config';
-import {LEVELS} from '../data/game-data';
-import {DEBUG, DEBUG_STYLE} from '../data/config';
+import {DEBUG, DEBUG_STYLE} from '../data/settings';
 
 class GameTripleView extends AbstractView {
-	constructor(images, stats, levelNumber) {
+	constructor(level, stats) {
 		super();
-		this.images = images;
+		this.level = level;
 		this.statsTemplate = stats.template;
-		this.level = levelNumber;
 	}
 
 	get template() {
 		return `
 			<section class="game">
-				<p class="game__task">Найдите рисунок среди изображений</p>
+				<p class="game__task">${this.level.question}</p>
 				<form class="game__content game__content--triple">
-					<div class="game__option" tabindex="0" ${DEBUG && LEVELS[this.level].answers[0] === `Option 1` ? DEBUG_STYLE : ``}>
-						<img src="${this.images[0].src}" alt="Option 1" width="${this.images[0].width}" height="${this.images[0].height}">
+					<div class="game__option" tabindex="0" ${DEBUG && this.isRightAnswer(0) ? DEBUG_STYLE : ``}>
+						<img
+							src="${this.level.answers[0].image.url}"
+							alt="Option 1"
+							width="${this.level.answers[0].image.width}"
+							height="${this.level.answers[0].image.height}"
+						>
 					</div>
-					<div class="game__option game__option--selected" tabindex="0" ${DEBUG && LEVELS[this.level].answers[0] === `Option 2` ? DEBUG_STYLE : ``}>
-						<img src="${this.images[1].src}" alt="Option 2" width="${this.images[1].width}" height="${this.images[1].height}">
+					<div class="game__option game__option--selected" tabindex="0" ${DEBUG && this.isRightAnswer(1) ? DEBUG_STYLE : ``}>
+						<img
+							src="${this.level.answers[1].image.url}"
+							alt="Option 2"
+							width="${this.level.answers[1].image.width}"
+							height="${this.level.answers[1].image.height}"
+						>
 					</div>
-					<div class="game__option" tabindex="0" ${DEBUG && LEVELS[this.level].answers[0] === `Option 3` ? DEBUG_STYLE : ``}>
-						<img src="${this.images[2].src}" alt="Option 3" width="${this.images[2].width}" height="${this.images[2].height}">
+					<div class="game__option" tabindex="0" ${DEBUG && this.isRightAnswer(2) ? DEBUG_STYLE : ``}>
+						<img
+							src="${this.level.answers[2].image.url}"
+							alt="Option 3"
+							width="${this.level.answers[2].image.width}"
+							height="${this.level.answers[2].image.height}"
+						>
 					</div>
 				</form>
 				${this.statsTemplate}
@@ -31,20 +44,27 @@ class GameTripleView extends AbstractView {
 		`;
 	}
 
+	// for debug mode only
+	isRightAnswer(index) {
+		const answers = this.level.answers.map((it) => it.type);
+
+		return answers.indexOf(answers[index]) === answers.lastIndexOf(answers[index]);
+	}
+
 	bind() {
 		const answers = this.element.querySelectorAll(`.game__option`);
 
-		answers.forEach((it) => {
+		answers.forEach((it, index) => {
 			it.addEventListener(`click`, (evt) => {
 				evt.preventDefault();
-				this.onAnswer([evt.target.alt]);
+				this.onAnswer(index);
 			});
 
 			it.addEventListener(`keydown`, (evt) => {
 				evt.preventDefault();
 
 				if (evt.keyCode === KeyCode.SPACE || evt.keyCode === KeyCode.ENTER) {
-					this.onAnswer([evt.target.children[0].alt]);
+					this.onAnswer(index);
 				}
 			});
 		});

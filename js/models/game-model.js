@@ -6,7 +6,8 @@ import changeLives from '../game/change-lives';
 const getLevel = (levelNumber) => LEVELS[levelNumber];
 
 class GameModel {
-	constructor(playerName) {
+	constructor(data, playerName) {
+		this.data = data;
 		this.playerName = playerName;
 		this.restart();
 	}
@@ -48,7 +49,7 @@ class GameModel {
 	}
 
 	getCurrentLevel() {
-		return getLevel(this._state.level);
+		return this.data[this._state.level];
 	}
 
 	tick() {
