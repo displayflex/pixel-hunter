@@ -5,6 +5,7 @@ import GameSingleView from "../views/game-single-view";
 import GameDoubleView from "../views/game-double-view";
 import GameTripleView from "../views/game-triple-view";
 import StatsView from "../views/stats-view";
+import ConfirmView from "../views/modals/confirm-view";
 
 class GameScreen {
 	constructor(model) {
@@ -12,6 +13,7 @@ class GameScreen {
 
 		this.header = new HeaderView(this.model.state);
 		this.stats = new StatsView(this.model.state.answers);
+		this.confirm = new ConfirmView();
 
 		this.level = this.model.getCurrentLevel();
 		this.content = this.chooseGameType(this.level.type);
@@ -31,7 +33,7 @@ class GameScreen {
 	}
 
 	headerInit() {
-		this.header.onClick = this.goBack.bind(this);
+		this.header.onClick = this.showModal.bind(this);
 		this.timerValue = this.header.element.querySelector(`.game__timer`).textContent; // FIXME: ?
 	}
 
@@ -148,9 +150,16 @@ class GameScreen {
 		this.content = view;
 	}
 
-	goBack() {
+	exit() {
 		this.model.restart();
 		Application.showGreeting();
+		document.body.removeChild(this.confirm.element);
+	}
+
+	showModal() {
+		document.body.appendChild(this.confirm.element);
+		this.confirm.onComfirm = () => this.exit();
+		this.confirm.onCancel = () => document.body.removeChild(this.confirm.element);
 	}
 }
 

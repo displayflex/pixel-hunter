@@ -1,6 +1,6 @@
-import AbstractView from './abstract-view';
+import AbstractView from '../abstract-view';
 
-class ModalErrorView extends AbstractView {
+class ErrorView extends AbstractView {
 	get template() {
 		return `
 			<section class="modal">
@@ -13,4 +13,4 @@ class ModalErrorView extends AbstractView {
 	}
 }
 
-export default ModalErrorView;
+export default ErrorView;

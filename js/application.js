@@ -4,7 +4,7 @@ import RulesScreen from "./screens/rules-screen";
 import GameModel from "./models/game-model";
 import GameScreen from "./screens/game-screen";
 import ResultsScreen from "./screens/results-screen";
-import ErrorView from "./views/modal-error-view";
+import ErrorView from "./views/modals/error-view";
 import Loader from "./data/loader";
 
 const mainElement = document.querySelector(`#main`);
