@@ -5,6 +5,16 @@
 @import "../variables/colors";
 @import "../mixins/text";
 
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+}
+
 .game {
   display: flex;
   flex-direction: column;
@@ -16,6 +26,10 @@
   @include bold-text;
   font-size: 60px;
   line-height: 45px;
+
+  &--animated {
+    animation: blink 0.5s infinite linear;
+  }
 }
 
 .game__task {
@@ -122,9 +136,9 @@
 
   &:hover {
     border-color: $link-hover-color;
-	}
+  }
 
-	&:focus {
+  &:focus {
     border-color: $link-hover-color;
   }
 

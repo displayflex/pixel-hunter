@@ -55,6 +55,10 @@ class HeaderView extends AbstractView {
 		this.timerElement.textContent = time;
 	}
 
+	startTimerBlink() {
+		this.timerElement.classList.add(`game__timer--animated`);
+	}
+
 	bind() {
 		const backButton = this.element.querySelector(`.back`);
 
