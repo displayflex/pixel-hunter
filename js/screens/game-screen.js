@@ -34,7 +34,7 @@ class GameScreen {
 
 	headerInit() {
 		this.header.onClick = this.showModal.bind(this);
-		this.timerValue = this.header.element.querySelector(`.game__timer`).textContent; // FIXME: ?
+		this.timerValue = this.header.timerElement.textContent;
 	}
 
 	chooseGameType(type) {
@@ -62,7 +62,7 @@ class GameScreen {
 
 	_tick() {
 		this.model.tick();
-		this.updateHeader();
+		this.header.updateTime(this.model.state.time);
 		this._timer = setTimeout(() => this._tick(), ONE_SECOND);
 		this.checkTimer();
 	}

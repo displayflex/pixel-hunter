@@ -5,6 +5,10 @@ class HeaderView extends AbstractView {
 	constructor(state = ``) {
 		super();
 		this.state = state;
+
+		if (state) {
+			this.timerElement = this.element.querySelector(`.game__timer`);
+		}
 	}
 
 	get template() {
@@ -45,6 +49,10 @@ class HeaderView extends AbstractView {
 				`).join(``)}
 			</div>
 		`.trim();
+	}
+
+	updateTime(time) {
+		this.timerElement.textContent = time;
 	}
 
 	bind() {
