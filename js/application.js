@@ -9,8 +9,11 @@ import Loader from "./data/loader";
 
 const mainElement = document.querySelector(`#main`);
 
-const changeView = (element) => {
-	mainElement.innerHTML = ``;
+const changeView = (element, isFade = false) => {
+	if (!isFade) {
+		mainElement.innerHTML = ``;
+	}
+
 	mainElement.appendChild(element);
 };
 
@@ -25,13 +28,16 @@ class Application {
 			.then((data) => {
 				gameData = data;
 			})
-			.then(Application.showGreeting())
-			.catch((err) => Application.showError(err));
+			.then(() => {
+				intro.addAnimation();
+				this.showGreeting(true);
+			})
+			.catch((err) => this.showError(err));
 	}
 
-	static showGreeting() {
+	static showGreeting(isFade) {
 		const greeting = new GreetingScreen();
-		changeView(greeting.element);
+		changeView(greeting.element, isFade);
 	}
 
 	static showRules() {
@@ -57,7 +63,7 @@ class Application {
 		Loader.saveResults(resultsData, playerName)
 			.then(() => Loader.loadResults(playerName))
 			.then((data) => results.showScores(data))
-			.catch((err) => Application.showError(err));
+			.catch((err) => this.showError(err));
 	}
 
 	static showError() {

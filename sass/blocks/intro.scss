@@ -40,3 +40,8 @@
   right: 0;
   top: 0;
 }
+
+.intro--animated {
+  animation: fadeOut 3s ease;
+  animation-fill-mode: forwards;
+}

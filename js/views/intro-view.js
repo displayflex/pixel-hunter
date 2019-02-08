@@ -12,17 +12,8 @@ class IntroView extends AbstractView {
 		`;
 	}
 
-	bind() {
-		const nextButton = this.element.querySelector(`.intro__asterisk`);
-
-		nextButton.addEventListener(`click`, (evt) => {
-			evt.preventDefault();
-			this.onClick();
-		});
-	}
-
-	onClick() {
-
+	addAnimation() {
+		this.element.classList.add(`intro--animated`);
 	}
 }
 

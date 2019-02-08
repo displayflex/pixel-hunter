@@ -58,7 +58,7 @@ const Result = {
 const ALL_ANSWERS_AMOUNT = 10;
 const MAX_LIVES_AMOUNT = 3;
 const ONE_SECOND = 1000;
-const BLINK_SECONDS = 5;
+const BLINK_TIME = 5;
 
 export {
 	INITIAL_STATE,
@@ -72,5 +72,5 @@ export {
 	ONE_SECOND,
 	QuestionType,
 	AnswerType,
-	BLINK_SECONDS
+	BLINK_TIME
 };

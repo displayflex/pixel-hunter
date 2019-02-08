@@ -1,6 +1,6 @@
 import HeaderView from "../views/header-view";
 import Application from "../application";
-import {Result, ONE_SECOND, BLINK_SECONDS, QuestionTime, QuestionType} from '../data/config';
+import {Result, ONE_SECOND, BLINK_TIME, QuestionTime, QuestionType} from '../data/config';
 import GameSingleView from "../views/game-single-view";
 import GameDoubleView from "../views/game-double-view";
 import GameTripleView from "../views/game-triple-view";
@@ -72,7 +72,7 @@ class GameScreen {
 			this.answer(false);
 		}
 
-		if (this.model.state.time <= BLINK_SECONDS) {
+		if (this.model.state.time <= BLINK_TIME) {
 			this.header.startTimerBlink();
 		}
 	}
