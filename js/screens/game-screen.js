@@ -162,6 +162,7 @@ class GameScreen {
 
 	showModal() {
 		document.body.appendChild(this.confirm.element);
+		this.confirm.confirmButton.focus();
 		this.confirm.onComfirm = () => this.exit();
 		this.confirm.onCancel = () => document.body.removeChild(this.confirm.element);
 	}
