@@ -1,8 +1,8 @@
-import {ExtraPoint, AnswerType, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from '../data/config';
+import {ExtraPoint, Result, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from '../data/config';
 
 const calculateScore = (answers, livesLeftAmount) => {
 	if (!Array.isArray(answers)) {
-		throw new Error(`Second parameter should be an array`);
+		throw new Error(`First parameter should be an array`);
 	}
 
 	if (typeof livesLeftAmount !== `number`) {
@@ -17,9 +17,9 @@ const calculateScore = (answers, livesLeftAmount) => {
 		return -1;
 	}
 
-	const rightAnswersAmount = answers.filter((it) => it.status !== AnswerType.WRONG).length;
-	const fastAnswersAmount = answers.filter((it) => it.status === AnswerType.FAST).length;
-	const slowAnswersAmount = answers.filter((it) => it.status === AnswerType.SLOW).length;
+	const rightAnswersAmount = answers.filter((it) => it.status !== Result.WRONG).length;
+	const fastAnswersAmount = answers.filter((it) => it.status === Result.FAST).length;
+	const slowAnswersAmount = answers.filter((it) => it.status === Result.SLOW).length;
 
 	const finalScore = (rightAnswersAmount * ExtraPoint.BASE) + (fastAnswersAmount * ExtraPoint.FAST) - (slowAnswersAmount * ExtraPoint.SLOW) + (livesLeftAmount * ExtraPoint.LIFE);
 
@@ -31,4 +31,4 @@ const calculateScore = (answers, livesLeftAmount) => {
 	};
 };
 
-export {calculateScore, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT, AnswerType, ExtraPoint};
+export {calculateScore, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT, Result, ExtraPoint};

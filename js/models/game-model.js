@@ -1,9 +1,6 @@
-import {LEVELS} from '../data/game-data';
-import {INITIAL_STATE} from '../data/game-data';
+import {INITIAL_STATE} from '../data/config';
 import increaseLevel from '../game/increase-level';
 import changeLives from '../game/change-lives';
-
-const getLevel = (levelNumber) => LEVELS[levelNumber];
 
 class GameModel {
 	constructor(data, playerName) {
@@ -17,7 +14,7 @@ class GameModel {
 	}
 
 	hasNextLevel() {
-		return getLevel(this._state.level + 1) !== void 0;
+		return this.data[this._state.level + 1] !== void 0;
 	}
 
 	nextLevel() {

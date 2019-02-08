@@ -1,6 +1,6 @@
 import HeaderView from "../views/header-view";
 import Application from "../application";
-import {AnswerType, ONE_SECOND, QuestionTime, QuestionType} from '../data/config';
+import {Result, ONE_SECOND, QuestionTime, QuestionType} from '../data/config';
 import GameSingleView from "../views/game-single-view";
 import GameDoubleView from "../views/game-double-view";
 import GameTripleView from "../views/game-triple-view";
@@ -97,12 +97,12 @@ class GameScreen {
 
 	getCorrectAnswerStatus(time) {
 		if (time < QuestionTime.SLOW) {
-			return AnswerType.SLOW;
+			return Result.SLOW;
 		} else if (time <= QuestionTime.FAST) {
-			return AnswerType.CORRECT;
+			return Result.CORRECT;
 		}
 
-		return AnswerType.FAST;
+		return Result.FAST;
 	}
 
 	answer(answer) {
@@ -110,7 +110,7 @@ class GameScreen {
 
 		if (!answer || !this.isRightAnswer(answer)) {
 			this.model.decreaseLives();
-			this.model.addAnswer(AnswerType.WRONG, this.timerValue);
+			this.model.addAnswer(Result.WRONG, this.timerValue);
 		} else {
 			this.model.addAnswer(this.getCorrectAnswerStatus(this.timerValue), this.timerValue);
 		}

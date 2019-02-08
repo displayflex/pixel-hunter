@@ -1,15 +1,13 @@
+const INITIAL_STATE = Object.freeze({
+	time: 30,
+	lives: 3,
+	level: 0,
+	answers: []
+});
+
 const KeyCode = {
 	SPACE: 32,
 	ENTER: 13
-};
-
-const Status = {
-	OK: 200,
-	REDIRECT: 300
-};
-
-const DataURL = {
-	LOAD: `https://es.dump.academy/pixel-hunter/questions`
 };
 
 const QuestionType = {
@@ -38,6 +36,11 @@ const QuestionTime = {
 	FAST: 20
 };
 
+const AnswerType = {
+	PAINTING: `paint`,
+	PHOTO: `photo`
+};
+
 const ExtraPoint = {
 	BASE: 100,
 	FAST: 50,
@@ -45,7 +48,7 @@ const ExtraPoint = {
 	LIFE: 50
 };
 
-const AnswerType = {
+const Result = {
 	CORRECT: `correct`,
 	FAST: `fast`,
 	SLOW: `slow`,
@@ -57,15 +60,15 @@ const MAX_LIVES_AMOUNT = 3;
 const ONE_SECOND = 1000;
 
 export {
+	INITIAL_STATE,
 	KeyCode,
 	QuestionTime,
 	ExtraPoint,
-	AnswerType,
+	Result,
 	ALL_ANSWERS_AMOUNT,
 	MAX_LIVES_AMOUNT,
 	ImageFrame,
 	ONE_SECOND,
 	QuestionType,
-	Status,
-	DataURL
+	AnswerType
 };

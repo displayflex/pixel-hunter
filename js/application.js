@@ -4,23 +4,14 @@ import RulesScreen from "./screens/rules-screen";
 import GameModel from "./models/game-model";
 import GameScreen from "./screens/game-screen";
 import ResultsScreen from "./screens/results-screen";
-import adaptServerData from './game/data-adapter';
 import ErrorView from "./views/modal-error-view";
-import {Status, DataURL} from './data/config';
+import Loader from "./data/loader";
 
 const mainElement = document.querySelector(`#main`);
 
 const changeView = (element) => {
 	mainElement.innerHTML = ``;
 	mainElement.appendChild(element);
-};
-
-const checkStatus = (response) => {
-	if (response.status >= Status.OK && response.status < Status.REDIRECT) {
-		return response;
-	} else {
-		throw new Error(`${response.status}: ${response.statusText}`);
-	}
 };
 
 let gameData;
@@ -30,11 +21,9 @@ class Application {
 		const intro = new IntroScreen();
 		changeView(intro.element);
 
-		window.fetch(DataURL.LOAD)
-			.then(checkStatus)
-			.then((response) => response.json())
+		Loader.loadData()
 			.then((data) => {
-				gameData = adaptServerData(data)
+				gameData = data;
 			})
 			.then(Application.showGreeting())
 			.catch((err) => Application.showError(err));
@@ -58,8 +47,17 @@ class Application {
 	}
 
 	static showResults(model) {
+		const playerName = model.playerName;
+		const resultsData = {
+			answers: model.state.answers,
+			lives: model.state.lives
+		};
 		const results = new ResultsScreen(model);
 		changeView(results.element);
+		Loader.saveResults(resultsData, playerName)
+			.then(() => Loader.loadResults(playerName))
+			.then((data) => results.showScores(data))
+			.catch((err) => Application.showError(err));
 	}
 
 	static showError() {

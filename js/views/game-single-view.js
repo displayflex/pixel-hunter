@@ -1,5 +1,6 @@
 import AbstractView from './abstract-view';
 import {DEBUG, DEBUG_STYLE} from '../data/settings';
+import {AnswerType} from '../data/config';
 
 class GameSingleView extends AbstractView {
 	constructor(level, stats) {
@@ -22,11 +23,11 @@ class GameSingleView extends AbstractView {
 						>
 						<label class="game__answer game__answer--photo">
 							<input class="visually-hidden" name="question1" type="radio" value="photo">
-							<span ${DEBUG && this.level.answers[0].type === `photo` ? DEBUG_STYLE : ``}>Фото</span>
+							<span ${DEBUG && this.level.answers[0].type === AnswerType.PHOTO ? DEBUG_STYLE : ``}>Фото</span>
 						</label>
 						<label class="game__answer game__answer--paint">
 							<input class="visually-hidden" name="question1" type="radio" value="paint">
-							<span ${DEBUG && this.level.answers[0].type === `paint` ? DEBUG_STYLE : ``}>Рисунок</span>
+							<span ${DEBUG && this.level.answers[0].type === AnswerType.PAINTING ? DEBUG_STYLE : ``}>Рисунок</span>
 						</label>
 					</div>
 				</form>
