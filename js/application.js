@@ -28,10 +28,7 @@ class Application {
 			.then((data) => {
 				gameData = data;
 			})
-			.then(() => {
-				intro.addAnimation();
-				this.showGreeting(true);
-			})
+			.then(() => intro.enableButton())
 			.catch((err) => this.showError(err));
 	}
 

@@ -87,7 +87,7 @@ class ResultsView extends AbstractView {
 	}
 
 	isWin(result) {
-		return result.score !== -1;
+		return result !== -1;
 	}
 
 	getResultsTemplate(results, scores) {

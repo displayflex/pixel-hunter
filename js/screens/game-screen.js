@@ -12,6 +12,7 @@ class GameScreen {
 		this.model = model;
 
 		this.header = new HeaderView(this.model.state);
+		this.header.onClick = this.showModal.bind(this);
 		this.stats = new StatsView(this.model.state.answers);
 		this.confirm = new ConfirmView();
 
@@ -24,17 +25,11 @@ class GameScreen {
 		this.root.appendChild(this.content.element);
 
 		this._timer = null;
-
-		this.headerInit();
+		this.timerValue = this.header.timerElement.textContent;
 	}
 
 	get element() {
 		return this.root;
-	}
-
-	headerInit() {
-		this.header.onClick = this.showModal.bind(this);
-		this.timerValue = this.header.timerElement.textContent;
 	}
 
 	chooseGameType(type) {
@@ -113,6 +108,7 @@ class GameScreen {
 
 	answer(answer) {
 		this.stopGame();
+		this.timerValue = this.header.timerElement.textContent;
 
 		if (!answer || !this.isRightAnswer(answer)) {
 			this.model.decreaseLives();
@@ -133,7 +129,7 @@ class GameScreen {
 		const header = new HeaderView(this.model.state);
 		this.root.replaceChild(header.element, this.header.element);
 		this.header = header;
-		this.headerInit();
+		this.header.onClick = this.showModal.bind(this);
 	}
 
 	changeLevel() {
