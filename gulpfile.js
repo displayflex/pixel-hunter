@@ -13,7 +13,10 @@ const svgstore = require(`gulp-svgstore`);
 const rollup = require(`gulp-better-rollup`);
 const sourcemaps = require(`gulp-sourcemaps`);
 const mocha = require(`gulp-mocha`);
+const resolve = require(`rollup-plugin-node-resolve`);
 const commonjs = require(`rollup-plugin-commonjs`);
+const babel = require(`rollup-plugin-babel`);
+const uglify = require(`gulp-uglify`);
 
 gulp.task(`style`, () => {
 	return gulp
@@ -60,7 +63,21 @@ gulp.task(`scripts`, () => {
 		.src(`js/main.js`)
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
-		.pipe(rollup({}, `iife`))
+		.pipe(rollup({
+			cache: false,
+			plugins: [
+				// resolve node modules
+				resolve({browser: true}),
+				// resolve commonjs imports
+				commonjs(),
+				babel({
+					babelrc: false,
+					exclude: `node_modules/**`,
+					presets: [`@babel/env`]
+				})
+			]
+		}, `iife`))
+		.pipe(uglify())
 		.pipe(sourcemaps.write(``))
 		.pipe(gulp.dest(`build/js/`));
 });
