@@ -20,20 +20,22 @@ const checkStatus = (response) => {
 const toJSON = (response) => response.json();
 
 class Loader {
-	static loadData() {
-		return fetch(`${SERVER_URL}/questions`)
-			.then(checkStatus)
-			.then(toJSON)
-			.then(adaptServerData);
+	static async loadData() {
+		const response = await fetch(`${SERVER_URL}/questions`);
+		checkStatus(response);
+		const data = await toJSON(response);
+
+		return adaptServerData(data);
 	}
 
-	static loadResults(name = DEFAULT_NAME) {
-		return fetch(`${SERVER_URL}/stats/:${APP_ID}-:${name}`)
-			.then(checkStatus)
-			.then(toJSON);
+	static async loadResults(name = DEFAULT_NAME) {
+		const response = await fetch(`${SERVER_URL}/stats/:${APP_ID}-:${name}`);
+		checkStatus(response);
+
+		return await toJSON(response);
 	}
 
-	static saveResults(data, name = DEFAULT_NAME) {
+	static async saveResults(data, name = DEFAULT_NAME) {
 		data = Object.assign({name}, data);
 
 		const requestSettings = {
@@ -44,8 +46,8 @@ class Loader {
 			method: `POST`
 		};
 
-		return fetch(`${SERVER_URL}/stats/:${APP_ID}-:${name}`, requestSettings)
-			.then(checkStatus);
+		const response = await fetch(`${SERVER_URL}/stats/:${APP_ID}-:${name}`, requestSettings);
+		checkStatus(response);
 	}
 }
 

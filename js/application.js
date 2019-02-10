@@ -20,16 +20,16 @@ const changeView = (element, isFade = false) => {
 let gameData;
 
 class Application {
-	static showIntro() {
+	static async showIntro() {
 		const intro = new IntroScreen();
 		changeView(intro.element);
 
-		Loader.loadData()
-			.then((data) => {
-				gameData = data;
-			})
-			.then(() => intro.enableButton())
-			.catch((err) => this.showError(err));
+		try {
+			gameData = await Loader.loadData();
+			intro.enableButton();
+		} catch (err) {
+			Application.showError(err);
+		}
 	}
 
 	static showGreeting(isFade) {
@@ -49,7 +49,7 @@ class Application {
 		gameScreen.startGame();
 	}
 
-	static showResults(model) {
+	static async showResults(model) {
 		const playerName = model.playerName;
 		const resultsData = {
 			answers: model.state.answers,
@@ -57,10 +57,13 @@ class Application {
 		};
 		const results = new ResultsScreen(model);
 		changeView(results.element);
-		Loader.saveResults(resultsData, playerName)
-			.then(() => Loader.loadResults(playerName))
-			.then((data) => results.showScores(data))
-			.catch((err) => this.showError(err));
+
+		try {
+			await Loader.saveResults(resultsData, playerName);
+			results.showScores(await Loader.loadResults(playerName));
+		} catch (err) {
+			Application.showError(err);
+		}
 	}
 
 	static showError() {
