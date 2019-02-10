@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import {ExtraPoint} from '../data/config';
+import {ExtraPoint} from '../game/config';
 import {calculateScore} from '../game/calculate-score';
 import StatsView from './stats-view';
 

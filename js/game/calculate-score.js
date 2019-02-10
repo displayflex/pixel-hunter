@@ -1,4 +1,4 @@
-import {ExtraPoint, Result, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from '../data/config';
+import {ExtraPoint, Result, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from './config';
 
 const calculateScore = (answers, livesLeftAmount) => {
 	if (!Array.isArray(answers)) {

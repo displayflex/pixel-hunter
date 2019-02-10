@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import {calculateScore} from './calculate-score';
-import {Result, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from '../data/config';
+import {Result, ALL_ANSWERS_AMOUNT, MAX_LIVES_AMOUNT} from './config';
 
 describe(`Calculate score`, () => {
 	// Correct data

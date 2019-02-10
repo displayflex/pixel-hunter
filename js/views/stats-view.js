@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import {ALL_ANSWERS_AMOUNT} from '../data/config';
+import {ALL_ANSWERS_AMOUNT} from '../game/config';
 
 class StatsView extends AbstractView {
 	constructor(answers) {

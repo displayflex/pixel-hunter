@@ -1,5 +1,5 @@
 import resize from './resize';
-import {ImageFrame} from '../data/config';
+import {ImageFrame} from './config';
 
 const adaptServerData = (data) => {
 	return data.map((it) => {
@@ -22,7 +22,7 @@ const adaptServerData = (data) => {
 			type: it.type,
 			question: it.question,
 			answers: changedAnswers
-		}
+		};
 	});
 };
 

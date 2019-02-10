@@ -5,7 +5,7 @@ import GameModel from "./models/game-model";
 import GameScreen from "./screens/game-screen";
 import ResultsScreen from "./screens/results-screen";
 import ErrorView from "./views/modals/error-view";
-import Loader from "./data/loader";
+import Loader from "./game/loader";
 
 const mainElement = document.querySelector(`#main`);
 
@@ -29,10 +29,10 @@ class Application {
 				gameData = data;
 			})
 			.then(() => intro.enableButton())
-			.catch((err) => this.showError(err));
+			.catch((err) => Application.showError(err));
 	}
 
-	static showGreeting(isFade) {
+	static showGreeting(isFade = true) {
 		const greeting = new GreetingScreen();
 		changeView(greeting.element, isFade);
 	}
@@ -60,7 +60,7 @@ class Application {
 		Loader.saveResults(resultsData, playerName)
 			.then(() => Loader.loadResults(playerName))
 			.then((data) => results.showScores(data))
-			.catch((err) => this.showError(err));
+			.catch((err) => Application.showError(err));
 	}
 
 	static showError() {

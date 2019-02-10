@@ -1,4 +1,4 @@
-import adaptServerData from '../game/data-adapter';
+import adaptServerData from './data-adapter';
 
 const Status = {
 	OK: 200,
@@ -12,9 +12,9 @@ const APP_ID = 22331138;
 const checkStatus = (response) => {
 	if (response.status >= Status.OK && response.status < Status.REDIRECT) {
 		return response;
-	} else {
-		throw new Error(`${response.status}: ${response.statusText}`);
 	}
+
+	throw new Error(`${response.status}: ${response.statusText}`);
 };
 
 const toJSON = (response) => response.json();

@@ -1,6 +1,6 @@
 import HeaderView from "../views/header-view";
 import Application from "../application";
-import {Result, ONE_SECOND, BLINK_TIME, QuestionTime, QuestionType} from '../data/config';
+import {Result, ONE_SECOND, BLINK_TIME, QuestionTime, QuestionType} from '../game/config';
 import GameSingleView from "../views/game-single-view";
 import GameDoubleView from "../views/game-double-view";
 import GameTripleView from "../views/game-triple-view";
@@ -86,6 +86,12 @@ class GameScreen {
 		return level.answers.map((it) => it.type);
 	}
 
+	/**
+	 * Checks if answer is right.
+	 * Answer type can be "Array" for TINDER_LIKE & TWO_OF_TWO type of game or "string" for ONE_OF_THREE.
+	 * @param {*} answer
+	 * @return {boolean}
+	 */
 	isRightAnswer(answer) {
 		const levelAnswers = this.getArrayOfAnswers(this.level);
 

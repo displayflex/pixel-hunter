@@ -1,4 +1,4 @@
-import {INITIAL_STATE} from '../data/config';
+import {INITIAL_STATE} from '../game/config';
 import increaseLevel from '../game/increase-level';
 import changeLives from '../game/change-lives';
 

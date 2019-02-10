@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
-import {DEBUG, DEBUG_STYLE} from '../data/settings';
-import {AnswerType} from '../data/config';
+import {DEBUG, DEBUG_STYLE} from '../settings';
+import {AnswerType} from '../game/config';
 
 class GameDoubleView extends AbstractView {
 	constructor(level, stats) {

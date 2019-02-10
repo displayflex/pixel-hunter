@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view';
-import {KeyCode} from '../data/config';
-import {DEBUG, DEBUG_STYLE} from '../data/settings';
+import {KeyCode} from '../game/config';
+import {DEBUG, DEBUG_STYLE} from '../settings';
 
 class GameTripleView extends AbstractView {
 	constructor(level, stats) {

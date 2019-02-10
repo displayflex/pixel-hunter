@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view';
-import {MAX_LIVES_AMOUNT} from '../data/config';
+import {MAX_LIVES_AMOUNT} from '../game/config';
 
 class HeaderView extends AbstractView {
 	constructor(state = ``) {

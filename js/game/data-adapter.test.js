@@ -1,7 +1,7 @@
 import {assert} from 'chai';
 import adaptServerData from './data-adapter';
 import resize from './resize';
-import {ImageFrame} from '../data/config';
+import {ImageFrame} from './config';
 
 describe(`Adapt server data`, () => {
 	const serverData = [
