@@ -32,7 +32,7 @@ class Application {
 			.catch((err) => Application.showError(err));
 	}
 
-	static showGreeting(isFade = true) {
+	static showGreeting(isFade = false) {
 		const greeting = new GreetingScreen();
 		changeView(greeting.element, isFade);
 	}
